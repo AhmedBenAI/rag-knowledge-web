@@ -2,6 +2,8 @@
 
 Angular 17 frontend for the [UK Employment Law Assistant](https://github.com/PotatoUser69/rag-knowledge-api).
 
+Live: **https://raf-knowledge.ahmed-ai.com**
+
 ## Prerequisites
 
 - Node 20+
@@ -25,14 +27,16 @@ The backend URL is set in the Angular environment files:
 | `src/environments/environment.ts` | `npm start` (development) |
 | `src/environments/environment.prod.ts` | `npm run build:prod` (production) |
 
-Before deploying, update `environment.prod.ts` with your backend's public URL:
+Once you have your Railway backend URL, update `src/environments/environment.prod.ts`:
 
 ```typescript
 export const environment = {
   production: true,
-  apiUrl: 'https://your-backend-url.railway.app',
+  apiUrl: 'https://your-app.railway.app', // paste your Railway URL here
 };
 ```
+
+Then commit and push — Vercel will rebuild automatically.
 
 ## Deploy to Vercel
 
@@ -41,11 +45,11 @@ export const environment = {
 3. Set **Framework Preset** → `Angular`
 4. Set **Build Command** → `npm run build:prod`
 5. Set **Output Directory** → `dist/rag-knowledge-web`
-6. Update `src/environments/environment.prod.ts` with the deployed backend URL and redeploy
+6. Add a custom domain → `raf-knowledge.ahmed-ai.com`
+7. After Railway gives you a backend URL, update `environment.prod.ts` and redeploy
 
 ## Docker
 
 ```bash
 docker build -t rag-knowledge-web .
 docker run -p 80:80 rag-knowledge-web
-```
